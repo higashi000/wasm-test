@@ -1,19 +1,18 @@
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<script src="wasm_exec.js"></script>
-		<script>
-      function Click() {
-			  const go = new Go();
-        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
-          go.run(result.instance);
-        });
-      }
-    </script>
+  <head>
+    <meta charset="utf-8"/>
+    <script src="wasm_exec.js"></script>
   </head>
   <body>
     <input type="text" id="text" />
-    <input type="button" value="解析" onclick="Click();"/>
+    <input type="button" id="button" value="解析" />
+    <input type="button" id="clear" value="クリア" />
     <div id="result"></div>
   </body>
+  <script>
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+      go.run(result.instance);
+    });
+  </script>
 </html>
